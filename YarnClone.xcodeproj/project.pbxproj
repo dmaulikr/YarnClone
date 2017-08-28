@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32096DFB1F4F6897006B9004 /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32096DFA1F4F6897006B9004 /* StoryScreen.swift */; };
+		320FD38A1F50ABA500CC96FA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320FD3891F50ABA500CC96FA /* Constants.swift */; };
 		3243F2A51F4C3292006AFA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243F2A41F4C3292006AFA1D /* AppDelegate.swift */; };
 		3243F2A71F4C3292006AFA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3243F2A61F4C3292006AFA1D /* ViewController.swift */; };
 		3243F2AA1F4C3292006AFA1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3243F2A81F4C3292006AFA1D /* Main.storyboard */; };
 		3243F2AC1F4C3292006AFA1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3243F2AB1F4C3292006AFA1D /* Assets.xcassets */; };
 		3243F2AF1F4C3292006AFA1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3243F2AD1F4C3292006AFA1D /* LaunchScreen.storyboard */; };
+		32EAFD871F4C65AF00F1C026 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EAFD861F4C65AF00F1C026 /* TableViewCell.swift */; };
+		6780140F140C2A18924F30BB /* Pods_YarnClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03134731F936F1CE8C3DBDF4 /* Pods_YarnClone.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03134731F936F1CE8C3DBDF4 /* Pods_YarnClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YarnClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15D2009A0F02FB75C3804FFD /* Pods-YarnClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YarnClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-YarnClone/Pods-YarnClone.release.xcconfig"; sourceTree = "<group>"; };
+		32096DFA1F4F6897006B9004 /* StoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
+		320FD3891F50ABA500CC96FA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3243F2A11F4C3292006AFA1D /* YarnClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YarnClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3243F2A41F4C3292006AFA1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3243F2A61F4C3292006AFA1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,9 @@
 		3243F2AB1F4C3292006AFA1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3243F2AE1F4C3292006AFA1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3243F2B01F4C3292006AFA1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3263235D1F4EFA700009A007 /* YarnClone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YarnClone-Bridging-Header.h"; sourceTree = "<group>"; };
+		32EAFD861F4C65AF00F1C026 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		AFEC89021C2D14E1B25DB01D /* Pods-YarnClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YarnClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YarnClone/Pods-YarnClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +40,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6780140F140C2A18924F30BB /* Pods_YarnClone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01FCB8EFAA67D2AD52F42871 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AFEC89021C2D14E1B25DB01D /* Pods-YarnClone.debug.xcconfig */,
+				15D2009A0F02FB75C3804FFD /* Pods-YarnClone.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3243F2981F4C3292006AFA1D = {
 			isa = PBXGroup;
 			children = (
 				3243F2A31F4C3292006AFA1D /* YarnClone */,
 				3243F2A21F4C3292006AFA1D /* Products */,
+				01FCB8EFAA67D2AD52F42871 /* Pods */,
+				5F8910F7B661C08BE24B77BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +78,25 @@
 			isa = PBXGroup;
 			children = (
 				3243F2A41F4C3292006AFA1D /* AppDelegate.swift */,
+				320FD3891F50ABA500CC96FA /* Constants.swift */,
 				3243F2A61F4C3292006AFA1D /* ViewController.swift */,
+				32096DFA1F4F6897006B9004 /* StoryScreen.swift */,
+				32EAFD861F4C65AF00F1C026 /* TableViewCell.swift */,
 				3243F2A81F4C3292006AFA1D /* Main.storyboard */,
 				3243F2AB1F4C3292006AFA1D /* Assets.xcassets */,
 				3243F2AD1F4C3292006AFA1D /* LaunchScreen.storyboard */,
 				3243F2B01F4C3292006AFA1D /* Info.plist */,
+				3263235D1F4EFA700009A007 /* YarnClone-Bridging-Header.h */,
 			);
 			path = YarnClone;
+			sourceTree = "<group>";
+		};
+		5F8910F7B661C08BE24B77BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03134731F936F1CE8C3DBDF4 /* Pods_YarnClone.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +106,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3243F2B31F4C3292006AFA1D /* Build configuration list for PBXNativeTarget "YarnClone" */;
 			buildPhases = (
+				384AD5C54C3BB2FF1A275C45 /* [CP] Check Pods Manifest.lock */,
 				3243F29D1F4C3292006AFA1D /* Sources */,
 				3243F29E1F4C3292006AFA1D /* Frameworks */,
 				3243F29F1F4C3292006AFA1D /* Resources */,
+				8B4BFF177CE7B370997C59BA /* [CP] Embed Pods Frameworks */,
+				80B1C84F9B6DB6461DD32D0E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +134,7 @@
 				TargetAttributes = {
 					3243F2A01F4C3292006AFA1D = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -130,13 +169,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		384AD5C54C3BB2FF1A275C45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		80B1C84F9B6DB6461DD32D0E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YarnClone/Pods-YarnClone-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B4BFF177CE7B370997C59BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YarnClone/Pods-YarnClone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3243F29D1F4C3292006AFA1D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320FD38A1F50ABA500CC96FA /* Constants.swift in Sources */,
+				32EAFD871F4C65AF00F1C026 /* TableViewCell.swift in Sources */,
 				3243F2A71F4C3292006AFA1D /* ViewController.swift in Sources */,
 				3243F2A51F4C3292006AFA1D /* AppDelegate.swift in Sources */,
+				32096DFB1F4F6897006B9004 /* StoryScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +283,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
+				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -250,6 +342,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -271,13 +364,19 @@
 		};
 		3243F2B41F4C3292006AFA1D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFEC89021C2D14E1B25DB01D /* Pods-YarnClone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = PTT8AW7PPX;
 				INFOPLIST_FILE = YarnClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.klyushkina.YarnClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YarnClone/YarnClone-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,13 +384,18 @@
 		};
 		3243F2B51F4C3292006AFA1D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15D2009A0F02FB75C3804FFD /* Pods-YarnClone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = PTT8AW7PPX;
 				INFOPLIST_FILE = YarnClone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.klyushkina.YarnClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YarnClone/YarnClone-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
