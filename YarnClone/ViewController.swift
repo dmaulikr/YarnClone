@@ -30,7 +30,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         //TODO: add the functionality of getting info if it's ONLINE or OFFLINE (Reachability)
         
-        // Create a navigation item with a YARN title
+        self.view.addSubview(loadingView)
+        startShowingActivityIndicator()
+        createLoadingView()
+        createNavigationBar()
+        getStoriesListAndUpdateUI()
+    }
+    
+    // Create a navigation item with a YARN title
+    func createNavigationBar() {
         navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height:44))
         navigationBar.isTranslucent = true
         let navigationItem = UINavigationItem(title: "YARN")
@@ -40,20 +48,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         navigationBar.shadowImage = UIImage()
         navigationBar.backgroundColor = UIColor.clear
         self.view.addSubview(navigationBar)
-        
-        //creating the view which will be shown while data is being loaded
+    }
+    
+    //creating the view which will be shown while data is being loaded
+    func createLoadingView() {
         loadingView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         // using a custom darkBlue color, created in the Extension (see at the bottom)
         loadingView.backgroundColor = .darkBlue
         loadingView.alpha = 1
         loadingView.tag = 100
         loadingView.isUserInteractionEnabled = true
-        
-        
-        //we start showing activity indicator + loading view while the data is being loaded
-        self.view.addSubview(loadingView)
-        self.startShowingActivityIndicator()
-        
+    }
+    
+    func getStoriesListAndUpdateUI() {
         DispatchQueue.global(qos: .background).async {
             // in the background we are loading the data about the stories
             guard let url = Constants().urlToStories
