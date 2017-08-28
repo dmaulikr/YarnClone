@@ -46,8 +46,9 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
                         allStoryMessages[url] = self.messagesForOneStory
                         print ("Dictionary with messages for the story \(url) - \(allStoryMessages)")
                     }
-                    self.messagesForOneStory.removeAll()
+                    
                 }
+                self.messagesForOneStory.removeAll()
                 //updating the UI, putting the data into the tableView cells
                 DispatchQueue.main.async {
                     tableView.reloadData()
@@ -122,22 +123,24 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
         print ("I WAS TAPPED!")
         
     }
-    
+    //FIX: fix the hiding of the navbarf
     //hiding navigation bar while scrolling
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationController?.hidesBarsOnSwipe = false
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.hidesBarsOnSwipe = true
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allStoryMessages.count
     }
     
+    //TODO: improve the logic of cell's height depending on the text of message
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height:CGFloat = CGFloat()
-        //if indexPath.row == 0 {
-            height = 90
+            height = 120
        
         return height
     }
@@ -147,18 +150,19 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
         //print("All the stories - \(allStoryMessages)")
         let url = allUrlsToFullStories[index]
         //print ("URL - \(url)")
+    
+        if allStoryMessages[url] != nil {
+            let bundleOfMessagesForExactStory = allStoryMessages[url] as! [[JSON]]
         
-        //FIX: Fix the crash
-        let bundleOfMessagesForExactStory = allStoryMessages[url] as! [[JSON]]
     
         //print ("Bundle of messages for particular story - \(bundleOfMessagesForExactStory)")
         
-        //FIX: fix the crash
         if let textMessage =  bundleOfMessagesForExactStory[0][indexPath.row]["message"].string {
             cell.messageLabel.text = textMessage
         }
         if let senderName =  bundleOfMessagesForExactStory[0][indexPath.row]["author"].string {
             cell.senderNameLabel.text = senderName
+        }
         }
         return cell
     }
@@ -184,10 +188,10 @@ class MyCell: UITableViewCell {
         label.text = "SampleName"//senderName
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
-        label.lineBreakMode = NSLineBreakMode.byCharWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.pinkForBackground
-        label.font = UIFont(name: "Avenir-Book", size: 10)
+        label.font = UIFont(name: "Avenir-Book", size: 14)
         label.textColor = UIColor.pinkForTitle
         return label
     }()
@@ -197,11 +201,12 @@ class MyCell: UITableViewCell {
         //TODO: to create the logic for setting different colors for messages depending on author
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
+        label.numberOfLines = 5
         label.backgroundColor = UIColor.pinkForBackground
-        label.lineBreakMode = NSLineBreakMode.byCharWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "SampleMessage"//message
-        label.font = UIFont(name: "Avenir-Book", size: 12)
+        label.font = UIFont(name: "Avenir-Book", size: 16)
         return label
     }()
     
@@ -211,47 +216,9 @@ class MyCell: UITableViewCell {
         
         //setting the positions for Author name label and message label in the tableView cell
         //ISSUE: fix the UI to prevent overlapping the labels
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": senderNameLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": senderNameLabel]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": senderNameLabel]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": messageLabel]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-45-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": messageLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": messageLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-55-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": messageLabel]))
     }
 }
-
-//extension UILabel
-//{
-//    private struct AssociatedKeys {
-//        static var padding = UIEdgeInsets()
-//    }
-//
-//    var padding: UIEdgeInsets? {
-//        get {
-//            return objc_getAssociatedObject(self, &AssociatedKeys.padding) as? UIEdgeInsets
-//        }
-//        set {
-//            if let newValue = newValue {
-//                objc_setAssociatedObject(self, &AssociatedKeys.padding, newValue as UIEdgeInsets!, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//            }
-//        }
-//    }
-//
-//    override open func draw(_ rect: CGRect) {
-//        if let insets = padding {
-//            self.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
-//        } else {
-//            self.drawText(in: rect)
-//        }
-//    }
-//
-//    override open var intrinsicContentSize: CGSize {
-//        get {
-//            var contentSize = super.intrinsicContentSize
-//            if let insets = padding {
-//                contentSize.height += insets.top + insets.bottom
-//                contentSize.width += insets.left + insets.right
-//            }
-//            return contentSize
-//        }
-//    }
-//}
-//
