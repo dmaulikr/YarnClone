@@ -57,9 +57,10 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func createNavigationBar() {
         navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height:44))
         navigationBar.backgroundColor = .white
-        self.view.addSubview(navigationBar)
-        let navigationItem = UINavigationItem()
         navigationBar.isTranslucent = false
+        self.view.addSubview(navigationBar)
+        
+        let navigationItem = UINavigationItem()
         
         //creating the item on navbar with story name, passed from the screen with stories list
         let labelWidth: CGFloat = navigationBar.frame.width / 3
@@ -121,7 +122,7 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 //updating the UI, putting the data into the tableView cells
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                        self.endShowingActivityIdicator()
+                    self.endShowingActivityIdicator()
                     
                     //TODO: add the message "Tap anywhere to continue reading" to the bottom of the screen after showing the first message of the story. After first tap it should hide
                     
@@ -133,9 +134,7 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         //TODO: add the functionality of adding a new cell with message after tapping the screen
         
-        //TODO: add th functionality of showing the image of next story if all the messages for curent story are already shown
-        
-        
+        //TODO: add the functionality of showing the image of next story if all the messages for curent story are already shown
     }
     
     //func for closing the StoryScreen viewcontroller after tapping the close X button
@@ -145,16 +144,6 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     @objc func tappingStoryScreen(recognizer: UITapGestureRecognizer) {
         print ("I WAS TAPPED!")
-        
-    }
-    //FIX: fix the hiding of the navbarf
-    //hiding navigation bar while scrolling
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.hidesBarsOnSwipe = true
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,9 +160,7 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MyCell
-        //print("All the stories - \(allStoryMessages)")
         let url = allUrlsToFullStories[index]
-        //print ("URL - \(url)")
         
         if allStoryMessages[url] != nil {
             let bundleOfMessagesForExactStory = allStoryMessages[url] as! [[JSON]]

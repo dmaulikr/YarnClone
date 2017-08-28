@@ -89,30 +89,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     //preparing to convert later the date from string to date
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = Constants().monthDayYear
+                    dateFormatter.locale = Locale(identifier: "ru_RU")
                     
                     for i in 0..<storyNames.count {
                         self.storiesInfoDictionary.append(self.emptyDict)
                         self.storiesInfoDictionary[i]["storyName"] = json[i]["storyName"].string
                         self.storiesInfoDictionary[i]["storyAuthorName"] = json[i]["storyAuthorName"].string
                         self.storiesInfoDictionary[i]["shortDescription"] = json[i]["shortDescription"].string
-                        //self.storiesInfoDictionary[i]["coverImageURL"] = Constants().prefix + json[i]["coverImageUrl"].string
                         
-                        //putting the converted date into the dictionary
+                        //putting the date into the dictionary
+                        
                         if let date = json[i]["date"].string {
-                            self.storiesInfoDictionary[i]["date"] = dateFormatter.date(from: date)
+                            self.storiesInfoDictionary[i]["date"] = date
+                            
                         }
                         self.storiesInfoDictionary[i]["url"] = json[i]["url"].string
                     }
                 }
-                //sorting the dicionaries in array by date
-                self.sortedStoryDictionary =  self.storiesInfoDictionary.sorted { (dict1, dict2) in
-                    if let date1 = dict1.keys.first,
-                        let date2 = dict2.keys.first {
-                        return date1.compare(date2) == ComparisonResult.orderedAscending
-                    }
-                    return false
-                }
-                //print ("STORIES INFORMATION: \(self.storiesInfoDictionary)")
+                
+                //TODO: implement sorting the array by date key value ascending
+                
                 DispatchQueue.main.async {
                     // removing the loading view and updating UI
                     self.tableView.reloadData()
@@ -140,7 +136,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sortedStoryDictionary.count
+        return self.storiesInfoDictionary.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -148,10 +144,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell
         
         //getting the data for Story Name label
-        if self.sortedStoryDictionary.count > 0 {
-            for _ in 0..<self.sortedStoryDictionary.count {
-                cell?.storyName.text = self.sortedStoryDictionary[indexPath.row]["storyName"] as? String
-                cell?.shortDescription.text = self.sortedStoryDictionary[indexPath.row]["shortDescription"] as? String
+        if self.storiesInfoDictionary.count > 0 {
+            for _ in storiesInfoDictionary {
+                cell?.storyName.text = self.storiesInfoDictionary[indexPath.row]["storyName"] as? String
+                cell?.shortDescription.text = self.storiesInfoDictionary[indexPath.row]["shortDescription"] as? String
             }
         }
         
@@ -159,7 +155,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let cell = cell {
             let imageView = cell.viewWithTag(1) as! UIImageView
             imageView.sd_setImage(with: URL(string: imageURLArray[indexPath.row]))
-            print ("The deal with images is done!")
         }
         return cell!
     }
@@ -167,7 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segue" {
             let DestViewController: StoryScreen = segue.destination as! StoryScreen
-            DestViewController.storyNameLabelText = sortedStoryDictionary[myIndex]["storyName"] as! String
+            DestViewController.storyNameLabelText = storiesInfoDictionary[myIndex]["storyName"] as! String
             DestViewController.allUrlsToFullStories = urlsToFullStories as! [String]
             DestViewController.index = myIndex
         }
@@ -199,3 +194,4 @@ extension UIColor {
         )
     }
 }
+
