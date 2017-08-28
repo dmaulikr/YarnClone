@@ -11,17 +11,17 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-var allStoryMessages = [String: [Any]]()
-
 class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var navigationBar = UINavigationBar()
     var navStoryNameItem = UIBarButtonItem()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var allUrlsToFullStories = [String]()
     var storyNameLabelText = String()
     var index = 0
     var label = UILabel()
     var messagesForOneStory = [Any]()
     let tableView = UITableView()
+    var allStoryMessages = [String: [Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +31,6 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
         createNavigationBar()
         getStoryMessagesAndUpdateUI()
     }
-    
-    //TODO: add an activity indicator to the screen while loading the data
     
     func createTableView() {
         //registering the custom cell for our tableView (see the cell class at tht bottom of this file)
@@ -87,7 +85,21 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.view.addSubview(tableView)
     }
     
+    //func for starting showing activity indicator while loading something
+    func startShowingActivityIndicator() {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+    }
+    //func for stopping showing activity indictor at the end of loading process
+    func endShowingActivityIdicator() {
+        activityIndicator.stopAnimating()
+    }
+    
     func getStoryMessagesAndUpdateUI() {
+        startShowingActivityIndicator()
         DispatchQueue.global(qos: .background).async {
             let url = self.allUrlsToFullStories[self.index]
             print("json request sent")
@@ -101,14 +113,15 @@ class StoryScreen: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     if let story = json["messages"].array {
                         self.messagesForOneStory.append(story)
                         
-                        allStoryMessages[url] = self.messagesForOneStory
-                        print ("Dictionary with messages for the story \(url) - \(allStoryMessages)")
+                        self.allStoryMessages[url] = self.messagesForOneStory
+                        print ("Dictionary with messages for the story \(url) - \(self.allStoryMessages)")
                     }
                 }
                 self.messagesForOneStory.removeAll()
                 //updating the UI, putting the data into the tableView cells
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                        self.endShowingActivityIdicator()
                     
                     //TODO: add the message "Tap anywhere to continue reading" to the bottom of the screen after showing the first message of the story. After first tap it should hide
                     
